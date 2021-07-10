@@ -1,0 +1,36 @@
+{
+
+  "manifest_version": 2,
+  "name": "KdoMaka",
+  "version": "1.0",
+
+  "description": "",
+  "icons": {
+    "64": "icons/ico64.png",
+    "32": "icons/ico32.png",
+    "16": "icons/ico16.png"
+    },
+  
+  
+ "browser_action": {
+    "default_title": "",
+    "default_icon": {
+      "16": "icons/ico16.png",
+	  "32": "icons/ico32.png",
+    "64": "icons/ico64.png"
+    },
+    "browser_style": true
+  },
+  "content_security_policy":"script-src 'self' https://seznam.cz; object-src 'self'",
+
+
+  "content_scripts": [
+    {
+      "matches": ["https://intranet.atlasconsulting.cz/seznam*"],
+      "js": ["main.js","includer.js","tools.js"]
+    }
+  ]
+  
+ 
+
+}
