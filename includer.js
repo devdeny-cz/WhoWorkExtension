@@ -14,6 +14,23 @@ function getAllStates(){
     
 }
 
+function getAllStates2(){
+    var statesCell = document.getElementsByClassName('grid-cell-dochazka');
+    var states = {};
+    for (var i = 0; i < statesCell.length; i++) {
+        var state = statesCell[i].innerHTML.trim();   
+        if (states.hasOwnProperty(state))
+        {
+            states[state]++;
+        }
+        else {
+            states[state] = 1;
+        }
+    }
+    return states;
+    
+}
+
 function getThForCombobox(){
     var rows = document.getElementsByClassName('filter inner');
     if (rows.length ==0) return null;
@@ -23,7 +40,8 @@ function getThForCombobox(){
 }
 
 function createStateCombobox(){
-    var states = getAllStates();
+    //getAllStates2();
+    var states = getAllStates2();
     var cell = getThForCombobox();
     if (cell === null) return;
     addCombobox(states,cell);
@@ -41,6 +59,13 @@ function addCombobox(states, parent){
     cbStates.setAttribute("class","form-control");
 cbStates.setAttribute("style","margin-top:-19px;")
     appendOption("Všeci","Všeci","state-0",cbStates);
+    var index = 0;
+    for(var state in states) {
+        var count = states[state];
+        appendOption(state+" ("+count+")",state,"state-"+(index++),cbStates);
+
+      }
+
     for (var i = 0; i < states.length; i++) {
         var state = states[i];  
         appendOption(state,state,"state-"+(i+1),cbStates);
